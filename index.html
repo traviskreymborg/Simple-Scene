@@ -5,6 +5,9 @@
         <script src= 
             "https://aframe.io/releases/1.7.0/aframe.min.js">
         </script>
+        <script src=
+            "https://wsause.github.io/sause-extras/navigation.js">
+        </script>
     </head>
     <body>
         <a-scene>
@@ -104,6 +107,7 @@
                 width="10"
                 height="3"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -113,6 +117,7 @@
                 width="10"
                 height="3"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -122,6 +127,7 @@
                 width="10"
                 height="3"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -131,6 +137,7 @@
                 width="4.25"
                 height="3"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -140,6 +147,7 @@
                 width="4.25"
                 height="3"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -149,6 +157,7 @@
                 width="1.5"
                 height="0.5"
                 depth="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -157,6 +166,7 @@
                 width="10"
                 depth="10"
                 height="0.1"
+                class="collidable"
             >
             </a-box>
             <a-box
@@ -165,6 +175,7 @@
                 width="12"
                 depth="12"
                 height="0.25"
+                class="collidable"
             >
             </a-box>
             <a-mixin
@@ -177,26 +188,31 @@
                     normalMap: #treetrunk-normal;
                     normalTextureRepeat: 3 5"
                 geometry="radius:0.2; height:3"
+                class="collidable"
             >
             </a-mixin>
             <a-cylinder
                 mixin="treetrunk"
                 position="-8 1 -7"
+                class="collidable"
             >
             </a-cylinder>
             <a-cylinder
                 mixin="treetrunk"
                 position="-3 1 -1"
+                class="collidable"
             >
             </a-cylinder>
             <a-cylinder
                 mixin="treetrunk"
                 position="8 1 -6"
+                class="collidable"
             >
             </a-cylinder>
             <a-cylinder
                 mixin="treetrunk"
                 position="4 1 -2"
+                class="collidable"
             >
             </a-cylinder>
             <a-mixin
@@ -209,16 +225,19 @@
                     normalMap: #conicaltreeleaves-normal;
                     normalTextureRepeat: 2 2;"
                 geometry="radius-bottom:1; height:3"
+                class="collidable"
             >
             </a-mixin>
             <a-cone
                 mixin="conicaltreeleaves"
                 position="-8 2.25 -7"
+                class="collidable"
             >
             </a-cone>
             <a-cone
                 mixin="conicaltreeleaves"
                 position="4 2.25 -2"
+                class="collidable"
             >
             </a-cone>
             <a-mixin
@@ -231,16 +250,19 @@
                     normalMap: #sphericaltreeleaves-normal;
                     normalTextureRepeat: 8 8;"
                 geometry="radius:1"
+                class="collidable"
             >
             </a-mixin>
             <a-sphere
                 mixin="sphericaltreeleaves"
                 position="-3 2 -1"
+                class="collidable"
             >
             </a-sphere>
             <a-sphere
                 mixin="sphericaltreeleaves"
                 position="8 2 -6"
+                class="collidable"
             >
             </a-sphere>
             <a-entity
@@ -248,13 +270,103 @@
                 position="-1.0 0 -10"
                 rotation="0 45 0"
                 scale="0.1 0.1 0.1"
+                class="collidable"
             >
             </a-entity>
             <a-entity
                 gltf-model="#lamp"
                 position="1.0 0 -10"
                 scale="0.225 0.225 0.225"
+                class="collidable"
             >
+            </a-entity>
+            <a-entity
+                id="rig"
+                navigation
+            >
+                <a-camera
+                    id="camera"
+                    wasd-controls="enabled: false"
+                    look-controls="enabled: false"
+                >
+                </a-camera>
+                <a-entity
+                    id="right-hand"
+                    laser-controls="hand: right"
+                >
+                </a-entity>
+                <a-entity
+                    id="left-hand"
+                    laser-controls="hand: left"
+                >
+                </a-entity>
+                <a-entity
+                    id="waist-raycaster-front"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1"
+                    position="0 1 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="head-raycaster-front"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1"
+                    position="0 1.6 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="knees-raycaster-front"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1"
+                    position="0 0.5 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="waist-raycaster-back"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1;
+                    direction: 0 0 1"
+                    position="0 1 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="head-raycaster-back"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1;
+                    direction: 0 0 1"
+                    position="0 1.6 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="knees-raycaster-back"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 0.1;
+                    direction: 0 0 1"
+                    position="0 0.5 0"
+                >
+                </a-entity>
+                <a-entity
+                    id="feet-raycaster"
+                    raycaster=
+                    "objects: .collidable;
+                    showLine: false;
+                    far: 5;
+                    direction: 0 -1 0"
+                    position="0 0.45 0"
+                >
+                </a-entity>
             </a-entity>
         </a-scene>
     </body>
